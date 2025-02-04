@@ -12,13 +12,13 @@ import {
 } from "@appsmith/workers/Evaluation/evaluationUtils";
 import { getDataTree } from "./dataTreeSelectors";
 
-interface ErrorObejct {
+interface ErrorObject {
   [k: string]: Log;
 }
 
 export const getDebuggerErrors = (state: AppState) => state.ui.debugger.errors;
 export const hideErrors = (state: AppState) => state.ui.debugger.hideErrors;
-const emptyErrorObejct: ErrorObejct = {};
+const emptyErrorObject: ErrorObject = {};
 
 export const getFilteredErrors = createSelector(
   getDebuggerErrors,
@@ -26,8 +26,8 @@ export const getFilteredErrors = createSelector(
   getWidgets,
   getDataTree,
   (errors, hideErrors, canvasWidgets, dataTree: DataTree) => {
-    if (hideErrors) return emptyErrorObejct;
-    if (isEmpty(errors)) return emptyErrorObejct;
+    if (hideErrors) return emptyErrorObject;
+    if (isEmpty(errors)) return emptyErrorObject;
 
     const alwaysShowEntities: Record<string, boolean> = {};
     Object.entries(errors).forEach(([, error]) => {
